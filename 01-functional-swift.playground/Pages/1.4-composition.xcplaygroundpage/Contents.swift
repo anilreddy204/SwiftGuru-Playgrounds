@@ -16,6 +16,16 @@ let noida = City(name: "Noida", country: "India", population: 10_000)
 
 let cities = [delhi,gurgaon,chandigarh,noida]
 
+let totalPopulation  = cities.reduce(0) {$0 + $1.population}
+print(totalPopulation)
+
+
+let sorted = cities.sorted(by: { $0.population > $1.population})
+var sorted1 = sorted.map{$0.name}.reduce("") {"\($0)  \($1)"}
+//var sorted2 =
+print("sorted1 \(sorted1)")
+//print("sorted2 \(sorted2)")
+
 //1. Calculate the total population using reduce
 //print(totalPopulation) //23000
 

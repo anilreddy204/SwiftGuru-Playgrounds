@@ -13,6 +13,14 @@ transformedArray
 
 //1.2 Using Map
 
+let transformed = (1...5).map {$0 * $0}
+print(transformed)
+
+let list = (1...5).map { (num) -> Int in
+    return num * num
+}
+print(list)
+
 //2 Convert [[1,2,3],[4,5,6],[7,8,9]] to [1,2,3,4,5,6,7,8,9]
 //2.1 Using For Loop
 var flatMappedArray = [Int]()
@@ -21,9 +29,26 @@ for array in [[1,2,3],[4,5,6],[7,8,9]] {
         flatMappedArray.append(number)
     }
 }
-flatMappedArray
+//flatMappedArray
+let i : Int? = nil
+let j = i.map { "Your Num :\($0)"} ?? "Unknown"
 
 //2.2 Using flatMap
+
+let flatmap = [[1,2,3],[4,5,6],[7,8,9]].flatMap{ $0 }
+print(flatmap)
+
+let flattend = ["non nil", nil,"done"].flatMap{ $0 }
+print(flattend)
+
+let filtered = (1...10).filter{ $0 % 2 == 0}
+print(filtered)
+
+let reduce = (1...3).reduce(0, +) // it will rduce using method
+print(reduce)
+
+let reduceminus = (1...3).reduce(0, -) // it will rduce using method
+print(reduceminus)
 
 //3. Filter even numbers from [1,2,3,4,5]
 //3.1 Using For Loop
@@ -46,3 +71,4 @@ for number in (1...5) {
 reducedNumber
 
 //4.2 Using Reduce
+
