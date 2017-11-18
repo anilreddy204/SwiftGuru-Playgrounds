@@ -3,7 +3,7 @@
  ### 5.1 Value & References
  */
 
-struct Person {
+class Person {
     var name: String
     
     init(name: String) {

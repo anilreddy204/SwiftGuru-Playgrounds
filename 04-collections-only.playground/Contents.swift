@@ -45,40 +45,39 @@ struct Matrix {
 extension Matrix {
     func first() -> Element? {
         //YOUR CODE GOES HERE
-        return nil
+        return self.first
     }
     
     func rows(upTo idx: Int) -> SubSequence? {
         //YOUR CODE GOES HERE
-        return nil
+        return self.prefix(upTo: idx)
     }
     
     func row(at idx: Int) -> Element? {
         //YOUR CODE GOES HERE
-        return nil
+        return self[idx]
     }
     
     func rows(in range: Range<Int>) -> SubSequence? {
         //YOUR CODE GOES HERE
-        return nil
+        return self[range]
     }
     
     func last() -> Element? {
-        //YOUR CODE GOES HERE
-        return nil
+        return self.last
     }
     
     func rows(from index: Int) -> SubSequence? {
         //YOUR CODE GOES HERE
-        return nil
+        return self.suffix(from: index)
     }
     
     mutating func replaceWithZeros(at index: Int) {
-        //YOUR CODE GOES HERE
+        self[index] = Array(repeatElement(0, count: columns))
     }
     
     mutating func swapRows(at idx: Int, with: Int) {
-        //YOUR CODE GOES HERE
+        self.swapAt(idx,with)
     }
     
     //Return an array of the sums of each row
@@ -107,23 +106,29 @@ extension Matrix {
  
  Fill in the implementatins of each of the methods and properties.
  */
-extension Matrix: Collection {
+extension Matrix: MutableCollection {
     
     var startIndex: Int {
-        //YOUR CODE GOES HERE
+        return 0
     }
     
     var endIndex: Int {
-        //YOUR CODE GOES HERE
+        return rows
     }
     
     func index(after idx: Int) -> Int {
-        //YOUR CODE GOES HERE
+        return idx + 1
     }
     
     subscript(position: Int) -> [Int] {
         get {
-            //YOUR CODE GOES HERE
+           return Array(elements[position*columns..<(position+1)*columns])
+        }
+        
+        set(newValue) {
+            for idx in 0..<newValue.count {
+                self.elements[position*columns+idx] = newValue[idx]
+            }
         }
     }
 }
@@ -134,7 +139,7 @@ extension Matrix: Collection {
 
 extension Matrix: BidirectionalCollection {
     func index(before idx: Int) -> Int {
-        //YOUR CODE GOES HERE
+        return idx - 1
     }
 }
 /*:

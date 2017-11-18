@@ -39,7 +39,8 @@ struct TokenIterator : IteratorProtocol {
     
     mutating func next() -> String? {
         //YOUR CODE GOES HERE
-        return nil
+        index = index + 1
+        return tokens.isEmpty || tokens.count <= index ? nil : tokens[index]
     }
 }
 /*:
@@ -47,7 +48,7 @@ Great, we now have an interator that iterates through the tokens of a Program. B
 */
 extension Program : Sequence {
     func makeIterator() -> TokenIterator {
-        //YOUR CODE GOES HERE
+        return TokenIterator(self)
     }
 }
 
