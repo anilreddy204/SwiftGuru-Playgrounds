@@ -27,25 +27,36 @@ prefix func ⍴<T>(w: [T]) -> T {
 prefix operator ⚀
 prefix func ⚀<T>(w: [T]) -> Int {
     //YOUR CODE GOES HERE
-    return 0
+    return w.count
 }
 
 infix operator ¦
 func ¦<T> (w: [T], predicate: (T)->Bool) -> [T] {
     //YOUR CODE GOES HERE
-    return []
+    return w.filter(predicate)
 }
 
 /*:
 Now refering to the qsort() function can you rewrite it as q() using the three operators you defined. You may also use Swift's builtin operators.
 */
+//func qsort<T: Comparable>(_ array: [T]) -> [T] {
+//    guard array.count > 1 else { return array }
+//    let pivot = array[0]
+//    return qsort(array.filter { $0 < pivot }) + array.filter { $0 == pivot } + qsort(array.filter { $0 > pivot })
+//}
+
+
 func q<T : Comparable>(_ w: [T]) -> [T] {
     //YOUR CODE GOES HERE
-    return []
+//    guard ⚀w > 1 else {return w}
+//    let pivot = ⍴w
+//    return q(w¦{$0 < pivot}) + (w¦{$0 == pivot}) + q(w¦{ $0 > pivot })
+    
+    return ⚀(w) > 1 ? q(w¦{$0 < ⍴w}) + (w¦{$0 == ⍴w}) + q(w¦{ $0 > ⍴w }) : w
 }
 
-//XCTAssertEqual(q([4, 10, 9, 9, 8, 6, 4]), [4, 4, 6, 8, 9, 9, 10])
-//XCTAssertEqual(q(["Tokyo", "New York", "Bangalore"]), ["Bangalore", "New York", "Tokyo"])
+XCTAssertEqual(q([4, 10, 9, 9, 8, 6, 4]), [4, 4, 6, 8, 9, 9, 10])
+XCTAssertEqual(q(["Tokyo", "New York", "Bangalore"]), ["Bangalore", "New York", "Tokyo"])
 
 /*:
  ##### Precedence Groups
@@ -59,6 +70,16 @@ func q<T : Comparable>(_ w: [T]) -> [T] {
 */
 
 //YOUR CODE GOES HERE
+
+infix operator |+|
+infix operator |*|
+
+extension Array {
+    
+//    static func |+|<T: Comparable>(a:[T], b:[T])->[T]  {
+//        return 
+//    }
+}
 
 
 //XCTAssertEqual(([1, 2, 3] |+| [4, 5, 6]), [5, 7, 9])

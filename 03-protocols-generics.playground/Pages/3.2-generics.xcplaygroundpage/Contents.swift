@@ -46,14 +46,40 @@ struct GenericTypeName<T> {}
 
 //2.3 Covert IntStack to a generic version of stack and extend it to provide additional functionality like finding a peek and to check if a peak is at a specific value.
 
-//var stringStack = Stack<String>()
-//stringStack.push("foo")
-//stringStack.push("bar")
-//stringStack.push("baz")
-//stringStack.pop()
-//stringStack
+struct Stack<T> {
+    var items = [T]()
+    mutating func push(_ item: T) {
+        items.append(item)
+    }
+    mutating func pop() -> T {
+        return items.removeLast()
+    }
+}
+
+var stringStack = Stack<String>()
+stringStack.push("foo")
+stringStack.push("bar")
+stringStack.push("baz")
+stringStack.pop()
+stringStack
 //
+
+extension Stack {
+    func peek() ->T? {
+        return items.last
+    }
+  
+}
+
+extension Stack where T : Equatable {
+    
+    func isPeek(at element:T) -> Bool{
+    return items.isEmpty ? false : peek() == element
+    }
+}
+
 //stringStack.peek()
 //stringStack.isPeek(at: "baz")
 //stringStack.isPeek(at: "bar")
+
 
